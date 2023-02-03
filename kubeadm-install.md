@@ -10,8 +10,8 @@ br_netfilter
 EOF
 ```
 ```sh
-modprobe overlay
-modprobe br_netfilter
+sudo modprobe overlay
+sudo modprobe br_netfilter
 ```
 ```sh
 cat <<EOF | sudo tee /etc/sysctl.d/99-kubernetes-cri.conf
@@ -21,20 +21,20 @@ net.bridge.bridge-nf-call-ip6tables = 1
 EOF
 ```
 ```sh
-sysctl --system
+sudo sysctl --system
 ```
 ```sh
-apt-get install -y containerd
-mkdir -p /etc/containerd
-containerd config default > /etc/containerd/config.toml
+sudo apt-get install -y containerd
+sudo mkdir -p /etc/containerd
+sudo containerd config default > /etc/containerd/config.toml
 ```
 ```sh
-nano /etc/containerd/config.toml
+sudo vim /etc/containerd/config.toml
 ```
   --> SystemdCgroup = true
 
 ```sh
-systemctl restart containerd
+sudo systemctl restart containerd
 ```
 
 ##### Step 2: Kernel Parameter Configuration
