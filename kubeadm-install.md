@@ -25,9 +25,14 @@ sudo sysctl --system
 ```
 ```sh
 
-sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
+sudo mkdir -p /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+cat <<EOF | sudo tee /etc/apt/sources.list.d/docker.list
+deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu focal stable
+EOF
+
 sudo apt-get update && sudo apt-get install -y containerd.io
+sudo apt-get install  containerd.io
 
 Not Required Ignore : sudo mkdir -p /etc/containerd
 Not Required Ignore : sudo containerd config default > /etc/containerd/config.toml
