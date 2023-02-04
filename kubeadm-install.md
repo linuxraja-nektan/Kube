@@ -32,7 +32,7 @@ deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.
 EOF
 
 sudo apt-get update && sudo apt-get install -y containerd.io
-sudo apt-get install  containerd.io
+rm -rf /etc/containerd/config.toml
 
 Not Required Ignore : sudo mkdir -p /etc/containerd
 Not Required Ignore : sudo containerd config default > /etc/containerd/config.toml
